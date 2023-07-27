@@ -12,9 +12,15 @@ const appointmentSchema = new mongoose.Schema({
   },
   type: {
     type: String,
+    enum: ["blow_out", "mani_pedi", "massage"],
     required: true,
   },
-  with: {
+  client: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  spaSpecialist: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
     required: true,
