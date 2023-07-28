@@ -1,12 +1,12 @@
-// components/atoms/ErrorMessage.tsx
 import React from "react";
+import './errormessage.scss'
 
-interface ErrorMessageProps {
+type ErrorMessageProps = {
   children: React.ReactNode;
 }
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ children }) => {
-  return <p style={{ color: "red" }}>{children}</p>;
+  return <p className="error-message">{children}</p>;
 };
 
 export default ErrorMessage;
