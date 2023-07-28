@@ -1,12 +1,13 @@
 import React from "react";
+import './button.scss';
 
-interface ButtonProps {
+type ButtonProps = {
   onClick: () => void;
   children: React.ReactNode;
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children }) => {
-  return <button onClick={onClick}>{children}</button>;
+  return <button className="button" onClick={onClick}>{children}</button>;
 };
 
 export default Button;
