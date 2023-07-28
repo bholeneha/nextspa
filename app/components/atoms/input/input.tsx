@@ -1,7 +1,6 @@
-// components/atoms/Input.tsx
 import React from "react";
 
-interface InputProps {
+type InputProps = {
   type: string;
   placeholder: string;
   value: string;

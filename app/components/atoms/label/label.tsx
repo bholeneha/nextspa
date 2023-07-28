@@ -1,7 +1,6 @@
-// components/atoms/Label.tsx
 import React from "react";
 
-interface LabelProps {
+type LabelProps = {
   htmlFor: string;
   children: React.ReactNode;
 }
