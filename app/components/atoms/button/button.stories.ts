@@ -12,7 +12,7 @@ const meta: Meta<typeof Button> = {
   
   export const Primary: Story = {
     args: {
-        children: 'Button',
+        children: 'BUTTON',
         onClick: () => {}
     }
   };
