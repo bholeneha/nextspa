@@ -9,8 +9,8 @@ type NavBarProps = {};
 
 const Navbar: React.FC<NavBarProps> = () => {
   const router = useRouter();
-  const isDashboardActive = router. === "/dashboard"; // Needs fixing
-  const isLoginActive = router. === "/login"; // Needs fixing
+  const isDashboardActive = router.pathname === "/dashboard"; // Needs fixing
+  const isLoginActive = router.pathname === "/login"; // Needs fixing
 
   return (
       <nav className="navbar">
