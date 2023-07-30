@@ -1,23 +1,22 @@
-'use client';
+import React from 'react';
+import "./navbar.scss";
+import NavItem from '../../atoms/navitem/navitem';
 
-import React from "react";
-import NavItem from "../../atoms/navitem/navitem";
-import { useRouter } from "next/navigation";
-import './navbar.scss';
+interface NavbarProps {
+  navItems: { label: string; href: string }[];
+}
 
-type NavBarProps = {};
-
-const Navbar: React.FC<NavBarProps> = () => {
-  const router = useRouter();
-  const isDashboardActive = router.pathname === "/dashboard"; // Needs fixing
-  const isLoginActive = router.pathname === "/login"; // Needs fixing
-
+const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
   return (
-      <nav className="navbar">
-        <NavItem href="/dashboard" label="Dashboard" isActive={isDashboardActive} />
-        <NavItem href="/login" label="Login" isActive={isLoginActive} />
-      </nav>
+    <nav className='nav-wrapper'>
+      <ul className='navbar'>
+        {navItems.map((item, index) => (
+          <NavItem key={index} label={item.label} href={item.href} />
+        ))}
+      </ul>
+    </nav>
   );
 };
 
 export default Navbar;
+

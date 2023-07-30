@@ -1,17 +1,18 @@
-'use client';
-
-import React from "react";
-import NavBar from "../../molecules/navbar/navbar";
+import React from 'react';
 import './header.scss';
+import Navbar from '../../molecules/navbar/navbar';
 
-type HeaderProps = {};
-
-const Header: React.FC<HeaderProps> = () => {
+const Header: React.FC = () => {
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Login', href: '/login' },
+    { label: 'Dashboard', href: '/dashboard' },
+  ];
 
   return (
-    <header className="header">
-      <div>NextSpa</div>
-      <NavBar />
+    <header className='header'>
+      <h1>NEXT SPA</h1>
+      <Navbar navItems={navItems} />
     </header>
   );
 };
