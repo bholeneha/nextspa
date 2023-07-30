@@ -1,17 +1,21 @@
+'use client';
+
 import './loginpage.scss'
 import React from "react";
 import HomeLayout from "../../templates/home/home";
 import LoginForm from '../../organisms/loginform/loginform';
 
-const DashboardPage: React.FC = () => {
+const LoginPage: React.FC = () => {
+
   return (
     <HomeLayout>
         <h1>Log In</h1>
-        <LoginForm />
+        <p>Please log in to see your dashboard!</p>
+        <LoginForm onSubmit={() => {console.log("submitting...") }}/>
     </HomeLayout>
   );
 };
 
-export default DashboardPage;
+export default LoginPage;
 
 
