@@ -15,7 +15,7 @@ const meta: Meta<typeof NavItem> = {
     args: {
        href: 'Nav Item', 
        label: 'Nav Item', 
-       isActive: false
+
     }
   };
 
@@ -23,6 +23,6 @@ const meta: Meta<typeof NavItem> = {
     args: {
        href: 'Nav Item', 
        label: 'Nav Item', 
-       isActive: true
+
     }
   };

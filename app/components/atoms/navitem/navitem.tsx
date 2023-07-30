@@ -1,20 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import './navitem.scss'
+import React from 'react';
+import Link from 'next/link';
 
-type NavItemProps = {
-  href: string;
+interface NavItemProps {
   label: string;
-  isActive: boolean;
-};
+  href: string;
+}
 
-const NavItem: React.FC<NavItemProps> = ({ href, label, isActive }) => {
-  const linkClassName = isActive ? "nav-item-active" : "nav-item";
-
+const NavItem: React.FC<NavItemProps> = ({ label, href }) => {
   return (
-    <Link legacyBehavior href={href}>
-      <a className={linkClassName}>{label}</a>
-    </Link>
+    <li className='navitem'>
+       <Link href={href}>
+        {label}
+      </Link>
+    </li>
   );
 };
 
