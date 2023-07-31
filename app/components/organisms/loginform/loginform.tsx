@@ -2,11 +2,14 @@
 
 import React, {useState} from 'react';
 import { Form, Field } from 'react-final-form';
-import { authenticate } from '../../../utils/auth';
+// import { authenticate } from '../../../utils/auth';
 import ErrorMessage from '../../atoms/errormessage/errormessage';
+import Button from '../../atoms/button/button';
+import './loginform.scss';
 
 type LoginFormProps = {
   onSubmit: (values: LoginValues) => void;
+  error: boolean;
 }
 
 type LoginValues = {
@@ -14,17 +17,11 @@ type LoginValues = {
   password: string;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
-  const [error, setError] = useState<string | null>(null);
+const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
 
   const handleSubmit = async (values: LoginValues) => {
-    try {
-      await authenticate(values.email, values.password);
-      setError(null); // Clear any previous error
+      console.log('login form handle submit')
       onSubmit(values);
-    } catch (error) {
-      setError('Invalid username or password');
-    }
   };
 
   return (
@@ -33,8 +30,8 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
       initialValues={{ email: '', password: '' }}
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="email">Username</label>
+          <div className='input-field'>
+            <label htmlFor="email">Email</label>
             <Field
               name="email"
               component="input"
@@ -43,7 +40,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
             />
           </div>
 
-          <div>
+          <div className='input-field'>
             <label htmlFor="password">Password</label>
             <Field
               name="password"
@@ -52,8 +49,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
               placeholder="Enter your password"
             />
           </div>
-          {error && <ErrorMessage>{error}</ErrorMessage>}
-          <button type="submit">Login</button>
+          {error && <ErrorMessage>Incorrect Email and Password!</ErrorMessage>}
+          <a href='/'>Forgot password?</a>
+          <Button type="submit">Login</Button>
         </form>
       )}
     />
