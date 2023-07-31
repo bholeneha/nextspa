@@ -11,9 +11,9 @@ interface currentPathInfo {
 const Header: React.FC = () => {
 
   const navItems = [
-    {label: 'Home', href: '/'},
-    { label: 'Login', href: '/login' },
-    { label: 'Dashboard', href: '/dashboard' },
+    {label: 'HOME', href: '/'},
+    { label: 'LOGIN', href: '/login' },
+    { label: 'DASHBOARD', href: '/dashboard' },
   ];
 
   const pathname = usePathname() || '/';
@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   return (
     <header>
       <div className='header'>
-        <h1>NEXT SPA</h1>
+        <h1>NEXTSPA</h1>
         <Navbar currentActivePage={currentActivePage}/>
       </div>
     </header>

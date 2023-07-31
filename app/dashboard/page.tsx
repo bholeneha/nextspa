@@ -19,10 +19,14 @@ const Dashboard: React.FC = () => {
   return (
     <HomeLayout>
       <div className='dashboard' > 
-        <h1>Welcome {data?.user?.name}</h1>
+        <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
         <div className='upcoming-meetings'></div>
-        <div className='past-meetings'></div>
-        <div className='documents-wrapper'></div>
+        <div className='past-meetings'>
+          <h2>Past Meetings</h2>
+        </div>
+        <div className='documents-wrapper'>
+          <h2>Documents</h2>
+        </div>
       </div>
       </HomeLayout>
   );
