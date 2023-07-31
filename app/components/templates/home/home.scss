@@ -3,5 +3,7 @@ main {
     flex-direction: column;
     margin: auto;
     text-align: center;
-    padding: 5rem;
+    justify-content: center;
+    min-height: 88vh;
+    align-items: center;
 }
