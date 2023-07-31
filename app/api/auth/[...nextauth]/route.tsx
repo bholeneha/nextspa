@@ -13,7 +13,7 @@ const handler = NextAuth({
 	callbacks: {
 		// modify jwt info - add accesstoken to jwt payload 
 		jwt: async ({token, user}) => {
-			console.log('jwt', token, user);
+			// console.log('jwt', token, user);
 			if (user) {
 				// @ts-ignore
 				token.accessToken = user['accessToken'];
@@ -35,9 +35,9 @@ const handler = NextAuth({
 		// @ts-ignore
 		// authorize function to check user credentials
 		authorize: async (credentials: { email: string; password: string }) => {
-			console.log(credentials);
+			// console.log(credentials);
 			const isValid = credentials.email === 'test@gmail.com' && credentials.password === 'test';
-			console.log(isValid);
+			// console.log(isValid);
 
 			if (isValid) {
 			  return {

@@ -6,9 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 
 const Dashboard: React.FC = () => {
-
   const router = useRouter();
-
   const {data, status: sessionStatus} = useSession()
 
   useEffect(() => {
