@@ -3,21 +3,27 @@ import './header.scss';
 import Navbar from '../../molecules/navbar/navbar';
 import { usePathname } from 'next/navigation';
 
+interface currentPathInfo {
+  label: string;
+  href: string;
+};
+
 const Header: React.FC = () => {
+
   const navItems = [
-    { label: 'Login', href: '/' },
+    {label: 'Home', href: '/'},
     { label: 'Login', href: '/login' },
     { label: 'Dashboard', href: '/dashboard' },
   ];
 
-  const pathname = usePathname()
-  const currentActivePage = pathname;
+  const pathname = usePathname() || '/';
+  const currentActivePage = navItems.find(item => (item.href === pathname));
 
   return (
     <header>
       <div className='header'>
         <h1>NEXT SPA</h1>
-        <Navbar navItems={navItems} currentActivePage={currentActivePage}/>
+        <Navbar currentActivePage={currentActivePage}/>
       </div>
     </header>
   );
