@@ -2,16 +2,28 @@ import React from 'react';
 import "./navbar.scss";
 import NavItem from '../../atoms/navitem/navitem';
 
-interface NavbarProps {
-  navItems: { label: string; href: string }[];
+interface NavItem {
+  label: string;
+  href: string;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ navItems }) => {
+interface NavbarProps {
+  navItems: NavItem[];
+  currentActivePage: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ navItems, currentActivePage }) => {
+
   return (
-    <nav className='nav-wrapper'>
-      <ul className='navbar'>
-        {navItems.map((item, index) => (
-          <NavItem key={index} label={item.label} href={item.href} />
+    <nav className='navbar'>
+      <ul>
+        {navItems.map((item) => (
+          // Check if the href of the item matches the currentActivePage
+          item.href === currentActivePage && (
+            <li key={item.href}>
+              <a href={item.href}>{item.label}</a>
+            </li>
+          )
         ))}
       </ul>
     </nav>
