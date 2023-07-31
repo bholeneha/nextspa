@@ -1,10 +1,17 @@
+'use client';
+
 import styles from './styles/page.module.css';
-import HomeLayout from "./components/templates/home/home";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import LoginPage from './login/page';
 
 export default function Home() {
-  return (
-    <HomeLayout>
-      <h2>Welcome to the Home Page!</h2>
-      <p>Login to see your dashboard</p>
-    </HomeLayout>
-)}
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the '/login' path on startup
+    router.push('/login');
+  }, []);
+
+  return null;
+}
