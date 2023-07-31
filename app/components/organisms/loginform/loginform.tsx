@@ -20,7 +20,7 @@ type LoginValues = {
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
 
   const handleSubmit = async (values: LoginValues) => {
-      console.log('login form handle submit')
+      // console.log('login form handle submit')
       onSubmit(values);
   };
 

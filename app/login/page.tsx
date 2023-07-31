@@ -22,10 +22,10 @@ const LoginPage: React.FC = () => {
   const router = useRouter();
 
   const handleSubmit = async (values: LoginValues) => {
-    console.log("Submitting...");
-    console.log(values);
+    // console.log("Submitting...");
+    // console.log(values);
     const signInResponse = await signIn('credentials', {email:values.email, password:values.password, redirect: false})
-    console.log(signInResponse)
+    // console.log(signInResponse)
     setHasError(!!signInResponse?.error);
     if (signInResponse?.ok) {
       router.push('/dashboard');
