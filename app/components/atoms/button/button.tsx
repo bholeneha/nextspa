@@ -4,7 +4,7 @@ import './button.scss';
 type ButtonProps = {
   onClick?: () => void;
   children: React.ReactNode;
-  type?: any;
+  type?: "button" | "submit" | "reset" | undefined;
 }
 
 const Button: React.FC<ButtonProps> = ({ onClick, children, type}) => {
