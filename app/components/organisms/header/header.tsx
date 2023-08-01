@@ -1,5 +1,5 @@
-import React from 'react';
 import './header.scss';
+import React from 'react';
 import Navbar from '../../molecules/navbar/navbar';
 import { usePathname } from 'next/navigation';
 

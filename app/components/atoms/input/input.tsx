@@ -1,5 +1,5 @@
-import React, { FocusEvent } from "react";
 import './input.scss'
+import React, { FocusEvent } from "react";
 
 interface InputProps {
   type?: string;
