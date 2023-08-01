@@ -7,11 +7,6 @@ import { useRouter } from 'next/navigation';
 import { signIn } from 'next-auth/react';
 import './loginpage.scss';
 
-interface LoginFormProps {
-  onSubmit: () => void;
-  hasError: boolean;
-}
-
 interface LoginValues {
   email: string;
   password: string;

@@ -3,11 +3,6 @@ import React from 'react';
 import Navbar from '../../molecules/navbar/navbar';
 import { usePathname } from 'next/navigation';
 
-interface currentPathInfo {
-  label: string;
-  href: string;
-};
-
 const Header: React.FC = () => {
 
   const navItems = [

@@ -1,10 +1,7 @@
 import React from "react";
 import './meetingcard.scss'
 
-type MeetingCardProps = {
-}
-
-const MeetingCard: React.FC<MeetingCardProps> = ({}) => {
+const MeetingCard: React.FC = () => {
   return <div className="meeting-card">{}</div>;
 };
 
