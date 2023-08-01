@@ -1,5 +1,5 @@
-import React from 'react';
 import './header.scss';
+import React from 'react';
 import Navbar from '../../molecules/navbar/navbar';
 import { usePathname } from 'next/navigation';
 
@@ -16,8 +16,8 @@ const Header: React.FC = () => {
     { label: 'DASHBOARD', href: '/dashboard' },
   ];
 
-  const pathname = usePathname() || '/';
-  const currentActivePage = navItems.find(item => (item.href === pathname));
+  const pathname = usePathname();
+  const currentActivePage = navItems.find(item => (item.href === pathname)) ?? {label: 'HOME', href: '/'};
 
   return (
     <header>

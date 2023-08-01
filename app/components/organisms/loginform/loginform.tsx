@@ -1,8 +1,6 @@
-'use client';
-
-import React, {useState} from 'react';
+import React from 'react';
 import { Form, Field } from 'react-final-form';
-// import { authenticate } from '../../../utils/auth';
+import LabeledInput from '../../molecules/labeledinput/labeledinput';
 import ErrorMessage from '../../atoms/errormessage/errormessage';
 import Button from '../../atoms/button/button';
 import './loginform.scss';
@@ -20,8 +18,8 @@ type LoginValues = {
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
 
   const handleSubmit = async (values: LoginValues) => {
-      // console.log('login form handle submit')
-      onSubmit(values);
+    // console.log('login form handle submit')
+    onSubmit(values);
   };
 
   return (
@@ -31,27 +29,23 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <div className='input-field'>
-            <label htmlFor="email">Email</label>
-            <Field
-              name="email"
-              component="input"
-              type="text"
-              placeholder="Enter your email"
-            />
+            <Field name="email">
+              {props => (
+                <LabeledInput {...props} label="Email" />
+              )}
+            </Field>
           </div>
 
           <div className='input-field'>
-            <label htmlFor="password">Password</label>
-            <Field
-              name="password"
-              component="input"
-              type="password"
-              placeholder="Enter your password"
-            />
+            <Field name="password">
+              {props => (
+                <LabeledInput {...props} label="Password" />
+              )}
+            </Field>
           </div>
           {error && <ErrorMessage>Incorrect Email and Password!</ErrorMessage>}
           <a href='/'>Forgot password?</a>
-          <Button type="submit">Login</Button>
+          <Button type="submit">LOGIN</Button>
         </form>
       )}
     />
