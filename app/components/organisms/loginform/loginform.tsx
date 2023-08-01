@@ -51,7 +51,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           </div>
           {error && <ErrorMessage>Incorrect Email and Password!</ErrorMessage>}
           <a href='/'>Forgot password?</a>
-          <Button type="submit">Login</Button>
+          <Button type="submit">LOGIN</Button>
         </form>
       )}
     />
