@@ -5,10 +5,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const handler = NextAuth({
 	session: {
 		strategy: 'jwt',
-		maxAge: 60
+		maxAge: 30
 	},
 	jwt: {
-		maxAge: 60
+		maxAge: 30
 	},
 	callbacks: {
 		// modify jwt info - add accesstoken to jwt payload 
@@ -36,14 +36,14 @@ const handler = NextAuth({
 		// authorize function to check user credentials
 		authorize: async (credentials: { email: string; password: string }) => {
 			// console.log(credentials);
-			const isValid = credentials.email === 'john@gmail.com' && credentials.password === 'john123';
+			const isValid = credentials.email === 'test@gmail.com' && credentials.password === 'test';
 			// console.log(isValid);
 
 			if (isValid) {
 			  return {
 				id: '1',
-				name: 'John',
-				email: 'john@gmail.com',
+				name: 'test',
+				email: 'test@gmail.com',
 			  };
 			} 
 			

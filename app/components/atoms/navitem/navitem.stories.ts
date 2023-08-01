@@ -15,5 +15,14 @@ const meta: Meta<typeof NavItem> = {
     args: {
        href: 'Nav Item', 
        label: 'Nav Item', 
+
+    }
+  };
+
+  export const Active: Story = {
+    args: {
+       href: 'Nav Item', 
+       label: 'Nav Item', 
+
     }
   };

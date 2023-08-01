@@ -12,9 +12,5 @@ const meta: Meta<typeof NavBar> = {
   
   export const Primary: Story = {
     args: {
-        currentActivePage: {
-          label: 'Login', 
-          href: '/login'
-        }
     },
   };
