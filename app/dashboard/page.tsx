@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import HomeLayout from '../components/templates/home/home';
 import { useRouter, usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import './dashboard.scss';
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
@@ -17,12 +18,17 @@ const Dashboard: React.FC = () => {
 
   return (
     <HomeLayout>
-      {data?.user ? (
-        <h1>Welcome {data.user.name}</h1>
-      ) : (
-        <h1>Loading...</h1>
-      )}
-    </HomeLayout>
+      <div className='dashboard' > 
+        <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
+        <div className='upcoming-meetings'></div>
+        <div className='past-meetings'>
+          <h2>Past Meetings</h2>
+        </div>
+        <div className='documents-wrapper'>
+          <h2>Documents</h2>
+        </div>
+      </div>
+      </HomeLayout>
   );
 };
 

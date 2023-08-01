@@ -1,13 +1,18 @@
 header {
     background-color: rgb(243, 242, 242);
+    height: 12vh;
+    display: flex;
 
     .header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         padding: 1rem;
-        width: 80vw;
+        width: 85vw;
         margin: auto;
     }
 
+    h1 {
+        color: var(--black);
+    }
 }
