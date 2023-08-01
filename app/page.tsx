@@ -1,9 +1,17 @@
-import styles from './styles/page.module.css'
+'use client';
+
+import styles from './styles/page.module.css';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import LoginPage from './login/page';
 
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <h1>Next Spa</h1>
-    </main>
-  )
+  const router = useRouter();
+
+  useEffect(() => {
+    // Redirect to the '/login' path on startup
+    router.push('/login');
+  }, []);
+
+  return null;
 }

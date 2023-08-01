@@ -4,6 +4,11 @@
 /node_modules
 /.pnp
 .pnp.js
+.env
+
+app/utils/send-request.js
+app/utils/users-api.js
+app/utils/users-service.js
 
 # testing
 /coverage

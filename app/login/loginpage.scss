@@ -1,0 +1,14 @@
+.login-form {
+    border: 0.5px solid rgb(124, 123, 123);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 2rem;
+    align-items: center;
+    min-width: 25rem;
+    margin: auto;
+
+    h1{
+        margin-bottom: 1rem;
+    }
+}
