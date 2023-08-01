@@ -17,7 +17,7 @@ const Header: React.FC = () => {
   ];
 
   const pathname = usePathname() || '/';
-  const currentActivePage = navItems.find(item => (item.href === pathname));
+  const currentActivePage = navItems.find(item => (item.href === pathname)) ?? your default;
 
   return (
     <header>
