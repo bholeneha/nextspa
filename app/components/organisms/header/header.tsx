@@ -16,8 +16,8 @@ const Header: React.FC = () => {
     { label: 'DASHBOARD', href: '/dashboard' },
   ];
 
-  const pathname = usePathname() || '/';
-  const currentActivePage = navItems.find(item => (item.href === pathname)) ?? your default;
+  const pathname = usePathname();
+  const currentActivePage = navItems.find(item => (item.href === pathname)) ?? {label: 'HOME', href: '/'};
 
   return (
     <header>
