@@ -6,8 +6,6 @@ import Input from '../../atoms/input/input';
 import Button from '../../atoms/button/button';
 import "./bookingform.scss";
 
-type ServiceType = 'blowout' | 'manipedi' | 'massage';
-
 const BookingForm: React.FC = () => {
 
     const handleSubmit = async (values: FormData) => {
@@ -60,7 +58,7 @@ const BookingForm: React.FC = () => {
         time: '',
         notes: ''
         }}
-        render={({ handleSubmit, values }) => (
+        render={({ handleSubmit}) => (
             <form onSubmit={handleSubmit} className="booking-form">
 
                 {/* SERVICE TYPE FIELD */}

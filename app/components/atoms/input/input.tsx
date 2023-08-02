@@ -10,10 +10,9 @@ interface InputProps extends FieldRenderProps<string, HTMLInputElement> {
   onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
-  input: any;
 }
 
-const Input: React.FC<InputProps> = ({type, name, value, placeholder, onChange, onBlur, onFocus, meta, input}) => {
+const Input: React.FC<InputProps> = ({type, name, value, placeholder, onChange, onBlur, onFocus}) => {
   return (
     <input
       className='input'
