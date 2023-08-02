@@ -1,5 +1,5 @@
-import React from 'react';
 import "./navbar.scss";
+import React from 'react';
 import NavItem from '../../atoms/navitem/navitem';
 
 interface NavbarProps {

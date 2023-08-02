@@ -16,20 +16,21 @@ form {
 
         label {
             padding: 0.5rem;
-            width: 7rem;
+            width: 15rem;
             display: flex;
         }
 
         input{
             padding: 0.5rem;
             font-size: 1rem;
-            width: 13rem;
+            width: 15rem;
         }
     }
     
     a {
         font-size: 0.75rem;
-        align-self: flex-end;
+        width: 15rem;
+        text-align: right;
     }
 
 }

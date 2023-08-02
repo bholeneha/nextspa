@@ -6,7 +6,7 @@ type LabelProps = {
 }
 
 const Label: React.FC<LabelProps> = ({ htmlFor, children }) => {
-  return <label htmlFor={htmlFor}>{children}</label>;
+  return <label className="label" htmlFor={htmlFor}>{children}</label>;
 };
 
 export default Label;

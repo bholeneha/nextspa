@@ -11,7 +11,7 @@ export default function Home() {
   useEffect(() => {
     // Redirect to the '/login' path on startup
     router.push('/login');
-  }, []);
+  }, [router]);
 
   return null;
 }

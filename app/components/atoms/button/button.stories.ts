@@ -13,6 +13,7 @@ const meta: Meta<typeof Button> = {
   export const Primary: Story = {
     args: {
         children: 'BUTTON',
-        onClick: () => {}
+        onClick: () => {}, 
+        type: "button"
     }
   };
