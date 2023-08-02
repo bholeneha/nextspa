@@ -1,9 +1,8 @@
-import React, { useState } from "react";
 import { Form, Field } from 'react-final-form';
 import Select from 'react-select';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import Input from '../../atoms/input/input'; // Replace this with your actual Input component
+import Input from '../../atoms/input/input';
 import Button from '../../atoms/button/button';
 import "./bookingform.scss";
 
@@ -160,7 +159,7 @@ const BookingForm: React.FC = () => {
                     {props => (
                         <>
                         <Input
-                            // className="input-field-select"
+                            className="booking-form-notes"
                             name="notes"
                             type="text"
                             placeholder="Notes"
