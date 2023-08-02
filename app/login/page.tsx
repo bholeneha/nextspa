@@ -29,7 +29,7 @@ const LoginPage: React.FC = () => {
 
   return (
     <HomeLayout>
-        <div className='login-form'>
+        <div className='login-form-wrapper'>
           <h1>Log In</h1>
             <LoginForm onSubmit={handleSubmit} error={hasError} />
         </div>

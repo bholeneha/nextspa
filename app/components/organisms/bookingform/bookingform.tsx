@@ -65,7 +65,7 @@ const BookingForm: React.FC = () => {
             <form onSubmit={handleSubmit} className="booking-form">
 
                 {/* SERVICE TYPE FIELD */}
-                <div className='input-field'>
+                <div className='booking-form-field'>
                     <Field name="serviceType">
                     {props => (
                         <>
@@ -82,7 +82,7 @@ const BookingForm: React.FC = () => {
                 </div>
 
                 {/* LOCATION FIELD */}
-                <div className='input-field'>
+                <div className='booking-form-field'>
                     <Field name="location">
                     {props => (
                         <>
@@ -99,7 +99,7 @@ const BookingForm: React.FC = () => {
                 </div>
 
                 {/* SPA SPECIALIST FIELD */}
-                <div className='input-field'>
+                <div className='booking-form-field'>
                     <Field name="spaSpecialist">
                     {props => (
                         <>
@@ -116,13 +116,64 @@ const BookingForm: React.FC = () => {
                 </div>
 
                 {/* DATE FIELD */}
+                <div className='booking-form-field'>
+                    <Field name="date">
+                    {props => (
+                        <>
+                        <DatePicker
+                            // className="input-field-select"
+                            selected={props.input.value}
+                            onChange={props.input.onChange}
+                            dateFormat="MMMM d, yyyy"
+                            placeholderText="Select date"
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
 
                 {/* TIME FIELD */}
+                <div className='booking-form-field'>
+                    <Field name="time">
+                    {props => (
+                        <>
+                        <DatePicker
+                            // className="input-field-select"
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={30}
+                            dateFormat="h:mm aa"
+                            selected={props.input.value}
+                            onChange={props.input.onChange}
+                            placeholderText="Select time"
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
 
                 {/* NOTES FIELD */}
-
-
-
+                <div className='booking-form-field'>
+                    <Field name="notes">
+                    {props => (
+                        <>
+                        <Input
+                            // className="input-field-select"
+                            name="notes"
+                            type="text"
+                            placeholder="Notes"
+                            value={props.input.value}
+                            onChange={props.input.onChange}
+                            meta={props.meta}
+                            input={props.input}
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
 
                 <Button type="submit">SUBMIT</Button>
             </form>

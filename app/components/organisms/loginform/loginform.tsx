@@ -27,8 +27,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
       onSubmit={handleSubmit}
       initialValues={{ email: '', password: '' }}
       render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <div className='input-field'>
+        <form onSubmit={handleSubmit} className='login-form' >
+
+          <div className='login-form-field'>
             <Field name="email">
               {props => (
                 <LabeledInput name='email' {...props} label="Email" />
@@ -36,15 +37,18 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
             </Field>
           </div>
 
-          <div className='input-field'>
+          <div className='login-form-field'>
             <Field name="password">
               {props => (
                 <LabeledInput name='password' {...props} label="Password" />
               )}
             </Field>
           </div>
+          
           {error && <ErrorMessage>Incorrect Email and Password!</ErrorMessage>}
+
           <a href='/'>Forgot password?</a>
+
           <Button type="submit">LOGIN</Button>
         </form>
       )}
