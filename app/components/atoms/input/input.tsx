@@ -1,14 +1,14 @@
 import './input.scss'
-import React, { FocusEvent } from "react";
+import React, { ChangeEvent, FocusEvent } from "react";
 
 interface InputProps {
   type?: string;
   name: string; // Make 'name' mandatory
   value: string;
-  onChange: (value: any) => void;
   placeholder?: string;
-  onBlur?: (event: FocusEvent<any>) => void;
-  onFocus?: (event: FocusEvent<any>) => void;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
+  onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
 }
 
 const Input: React.FC<InputProps> = (input) => {
