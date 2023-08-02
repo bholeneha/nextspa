@@ -1,27 +1,29 @@
 import './input.scss'
 import React, { ChangeEvent, FocusEvent } from "react";
+import { FieldRenderProps } from 'react-final-form';
 
-interface InputProps {
+interface InputProps extends FieldRenderProps<string, HTMLInputElement> {
   type?: string;
-  name: string; // Make 'name' mandatory
-  value: string;
+  name: string;
+  value?: string;
   placeholder?: string;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (event: FocusEvent<HTMLInputElement>) => void;
   onFocus?: (event: FocusEvent<HTMLInputElement>) => void;
+  input: any;
 }
 
-const Input: React.FC<InputProps> = (input) => {
+const Input: React.FC<InputProps> = ({type, name, value, placeholder, onChange, onBlur, onFocus, meta, input}) => {
   return (
     <input
       className='input'
-      type={input.type}
-      name={input.name}
-      value={input.value}
-      onChange={input.onChange}
-      onBlur={input.onBlur}
-      onFocus={input.onFocus}
-      placeholder={input.placeholder}
+      type={type}
+      name={name}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+      onFocus={onFocus}
+      placeholder={placeholder}
     />
   );
 };

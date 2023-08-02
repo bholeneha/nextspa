@@ -8,8 +8,8 @@ interface LabeledInputProps extends FieldRenderProps<string, HTMLInputElement> {
   label: string;
 }
 
-const LabeledInput: React.FC<LabeledInputProps> = ({ input, label }) => {
-  const { name, value, onChange, onBlur, onFocus} = input;
+const LabeledInput: React.FC<LabeledInputProps> = ({ inputOptions, label, meta }) => {
+  const { name, value, onChange, onBlur, onFocus, input} = inputOptions;
 
   // Determine the input type based on the field name
   const isPasswordField = name === 'password';
@@ -25,7 +25,9 @@ const LabeledInput: React.FC<LabeledInputProps> = ({ input, label }) => {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        placeholder={input.placeholder}
+        placeholder={name}
+        meta={meta}
+        input={input}
       />
     </div>
   );
