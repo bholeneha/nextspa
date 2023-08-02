@@ -51,8 +51,44 @@ const BookingForm: React.FC = () => {
         notes: ''
         }}
         render={({ handleSubmit, values }) => (
-            <form onSubmit={handleSubmit}>
-                <Button type="submit">Submit</Button>
+            <form onSubmit={handleSubmit} className="booking-form">
+
+                {/* SERVICE TYPE FIELD */}
+                <div className='input-field'>
+                    <Field name="serviceType">
+                    {props => (
+                        <>
+                        <Select
+                            className="select"
+                            options={serviceTypeOptions}
+                            value={props.input.value}
+                            onChange={props.input.onChange}
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
+
+                {/* LOCATION FIELD */}
+                <div className='input-field'>
+                    <Field name="location">
+                    {props => (
+                        <>
+                        <Select
+                            className="select"
+                            options={locationOptions}
+                            value={props.input.value}
+                            onChange={props.input.onChange}
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
+
+
+                <Button type="submit">SUBMIT</Button>
             </form>
         )}
     />

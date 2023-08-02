@@ -31,7 +31,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           <div className='input-field'>
             <Field name="email">
               {props => (
-                <LabeledInput {...props} label="Email" />
+                <LabeledInput name='email' {...props} label="Email" />
               )}
             </Field>
           </div>
@@ -39,7 +39,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit, error }) => {
           <div className='input-field'>
             <Field name="password">
               {props => (
-                <LabeledInput {...props} label="Password" />
+                <LabeledInput name='password' {...props} label="Password" />
               )}
             </Field>
           </div>
