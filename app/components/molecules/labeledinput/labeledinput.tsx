@@ -4,7 +4,7 @@ import Label from '../../atoms/label/label';
 import Input from '../../atoms/input/input';
 import { FieldRenderProps } from 'react-final-form';
 
-interface LabeledInputProps extends FieldRenderProps {
+interface LabeledInputProps extends FieldRenderProps<string, HTMLInputElement> {
   label: string;
 }
 
@@ -17,7 +17,7 @@ const LabeledInput: React.FC<LabeledInputProps> = ({ input, label }) => {
 
   return (
     <div className='labeled-input'>
-      <Label children={label} htmlFor={name} />
+      <Label htmlFor={name}>{label}</Label>
       <Input
         type={inputType}
         name={name}

@@ -14,6 +14,7 @@ interface InputProps {
 const Input: React.FC<InputProps> = (input) => {
   return (
     <input
+      className='input'
       type={input.type}
       name={input.name}
       value={input.value}
