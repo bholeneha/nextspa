@@ -7,6 +7,8 @@ import Input from '../../atoms/input/input'; // Replace this with your actual In
 import Button from '../../atoms/button/button';
 import "./bookingform.scss";
 
+type ServiceType = 'blowout' | 'manipedi' | 'massage';
+
 const BookingForm: React.FC = () => {
 
     const handleSubmit = async (values: FormData) => {
@@ -24,20 +26,29 @@ const BookingForm: React.FC = () => {
         { value: 'dreamhouse', label: 'Dreamhouse Spa Retreat' }
     ];
 
-  const spaSpecialistOptions = {
-    blowout: [
-        { value: 'barbie', label: 'Barbie' },
-        { value: 'ken', label: 'Ken' }
-    ],
-    manipedi: [
-        { value: 'stacie', label: 'Stacie' },
-        { value: 'chelsea', label: 'Chelsea' }
-    ],
-    massage: [
-        { value: 'christie', label: 'Christie' },
-        { value: 'skipper', label: 'Skipper' }
-    ]
-  };
+    const spaSpecialistOptions = [
+        {
+            label: 'Blowout',
+            options: [
+                { value: 'barbie', label: 'Barbie' },
+                { value: 'ken', label: 'Ken' }
+            ]
+        },
+        {
+            label: 'Mani/Pedi',
+            options: [
+                { value: 'stacie', label: 'Stacie' },
+                { value: 'chelsea', label: 'Chelsea' }
+            ]
+        },
+        {
+            label: 'Massage',
+            options: [
+                { value: 'christie', label: 'Christie' },
+                { value: 'skipper', label: 'Skipper' }
+            ]
+        }
+    ];
   
   return (
     <Form
@@ -45,7 +56,7 @@ const BookingForm: React.FC = () => {
         initialValues={{
         serviceType: { value: '', label: 'Select Service Type' },
         location: { value: '', label: 'Select Location' },
-        spaSpecialist: null,
+        spaSpecialist: { value: '', label: 'Select Your Specialist'},
         date: '',
         time: '',
         notes: ''
@@ -86,6 +97,31 @@ const BookingForm: React.FC = () => {
                     )}
                     </Field>
                 </div>
+
+                {/* SPA SPECIALIST FIELD */}
+                <div className='input-field'>
+                    <Field name="spaSpecialist">
+                    {props => (
+                        <>
+                        <Select
+                            className="select"
+                            options={spaSpecialistOptions}
+                            value={props.input.value}
+                            onChange={props.input.onChange}
+                        />
+                        {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                        </>
+                    )}
+                    </Field>
+                </div>
+
+                {/* DATE FIELD */}
+
+                {/* TIME FIELD */}
+
+                {/* NOTES FIELD */}
+
+
 
 
                 <Button type="submit">SUBMIT</Button>
