@@ -1,4 +1,3 @@
-import { error } from "console";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -38,13 +37,12 @@ const handler = NextAuth({
 			// console.log(credentials);
 			const isValid = credentials.email === 'john@gmail.com' && credentials.password === 'john123';
 			// console.log(isValid);
-
 			if (isValid) {
-			  return {
-				id: '1',
-				name: 'John',
-				email: 'john@gmail.com',
-			  };
+				return {
+					id: '1',
+					name: 'John',
+					email: 'john@gmail.com',
+				};
 			} 
 			
 			return null;
