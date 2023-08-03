@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import HomeLayout from '../components/templates/home/home';
 import Button from '../components/atoms/button/button';
 import Modal from '../components/organisms/modal/modal';
+import MeetingCard from '../components/organisms/meetingcard/meetingcard';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import meetings from '../utils/meetings';
@@ -38,10 +39,30 @@ const Dashboard: React.FC = () => {
       <div className='dashboard' > 
         <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
         <div className='upcoming-meetings'>
+          {futureMeetings.map((meeting) => (
+              <MeetingCard
+                key={meeting.id}
+                date={meeting.date}
+                time={meeting.time}
+                serviceType={meeting.serviceType}
+                spaSpecialist={meeting.spaSpecialist}
+                location={meeting.location}
+              />
+          ))}
           <Button onClick={toggleModal}>BOOK NEW MEETING</Button>
         </div>
         <div className='past-meetings'>
           <h2>Past Meetings</h2>
+          {pastMeetings.map((meeting) => (
+            <MeetingCard
+              key={meeting.id}
+              date={meeting.date}
+              time={meeting.time}
+              serviceType={meeting.serviceType}
+              spaSpecialist={meeting.spaSpecialist}
+              location={meeting.location}
+            />
+          ))}
         </div>
         <div className='documents-wrapper'>
           <h2>Documents</h2>
