@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
-import { Form, Field } from 'react-final-form';
+import { Form, Field, FormSpy } from 'react-final-form';
 import Select from 'react-select';
 import DatePicker from "react-datepicker";
-import { startOfDay } from 'date-fns';
-import "react-datepicker/dist/react-datepicker.css";
 import Input from '../../atoms/input/input';
 import Button from '../../atoms/button/button';
+import ErrorMessage from '../../atoms/errormessage/errormessage';
 import "./bookingform.scss";
 
+// Type Declarations
 interface BookingFormProps {
     toggleModal: () => void;
 }
 
 type SingleValue<T> = BookingFormOption | null;
+
 type DateValue = Date | null;
 
 interface BookingFormOption {
@@ -30,10 +31,11 @@ interface FormValues {
     serviceType: BookingFormOption | null;
     location: BookingFormOption | null;
     spaSpecialist: BookingFormOption | null;
-    date: Date | null;
-    time: Date | null;
+    dateTime: Date | null;
     notes?: string;
 }
+
+// Functions
 
 const required = (value: string | BookingFormOption | Date | null | undefined) => {
     if (!value || (typeof value === 'object' && 'label' in value && value.label.trim() === '')) {
@@ -42,8 +44,16 @@ const required = (value: string | BookingFormOption | Date | null | undefined) =
     return undefined;
 };
 
+
+// Component
+
 const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
     const [filteredSpaSpecialists, setFilteredSpaSpecialists] = useState<BookingFormOption[]>([]);
+    const [currentTime, setCurrentTime] = useState<Date>(new Date());
+
+    const filterPassedTime = (time: Date) => {
+        return time.getTime() > currentTime.getTime();
+      };
 
     const handleServiceTypeChange = (selectedServiceType: SingleValue<string | BookingFormOption>) => {
         if (selectedServiceType !== null && typeof selectedServiceType !== 'string') {
@@ -87,11 +97,13 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                 location: null,
                 spaSpecialist: null,
                 date: null,
-                time: startOfDay(new Date()),
+                time: null,
                 notes: ''
             }}
+
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit} className="booking-form">
+
                     {/* SERVICE TYPE FIELD */}
                     <div className='booking-form-field'>
                         <Field name="serviceType" validate={required}>
@@ -107,7 +119,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                                             handleServiceTypeChange(selectedOption);
                                         }}
                                     />
-                                    {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
+                                    {props.meta.error && props.meta.touched && <ErrorMessage>{props.meta.error}</ErrorMessage>}
                                 </>
                             )}
                         </Field>
@@ -178,6 +190,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                                         showTimeSelectOnly
                                         timeIntervals={60}
                                         timeFormat="hh:mm aa"
+                                        filterTime={filterPassedTime}
                                         selected={props.input.value as DateValue}
                                         onChange={props.input.onChange}
                                         placeholderText="Select time"
@@ -207,8 +220,14 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                             )}
                         </Field>
                     </div>
-
-                    <Button type="submit" onClick={toggleModal}>SUBMIT</Button>
+                    
+                    <FormSpy subscription={{ valid: true }}>
+                    {({ valid }) => (
+                        <Button type="submit" onClick={toggleModal} disabled={!valid}>
+                            SUBMIT
+                        </Button>
+                    )}
+                    </FormSpy>
                 </form>
             )}
         />
