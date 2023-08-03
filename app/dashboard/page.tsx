@@ -6,16 +6,26 @@ import Button from '../components/atoms/button/button';
 import Modal from '../components/organisms/modal/modal';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import meetings from '../utils/meetings';
 import './dashboard.scss';
 
 const Dashboard: React.FC = () => {
   const router = useRouter();
   const {data, status: sessionStatus} = useSession()
   const [modal, setModal] = useState(false);
+  const [futureMeetings, setFutureMeetings] = useState<Meeting[]>([]);
+  const [pastMeetings, setPastMeetings] = useState<Meeting[]>([]);
 
   useEffect(() => {
     if(sessionStatus === 'unauthenticated') {
       router.push('/login');
+    } else {
+      const today = new Date().toISOString().split('T')[0];
+      const future = meetings.filter((meeting) => meeting.date >= today);
+      const past = meetings.filter((meeting) => meeting.date < today);
+
+      setFutureMeetings(future);
+      setPastMeetings(past);
     }
   }, [sessionStatus, router])
 

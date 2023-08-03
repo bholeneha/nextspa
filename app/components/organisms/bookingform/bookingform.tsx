@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Field, FormSpy } from 'react-final-form';
 import Select from 'react-select';
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Input from '../../atoms/input/input';
 import Button from '../../atoms/button/button';
 import ErrorMessage from '../../atoms/errormessage/errormessage';
