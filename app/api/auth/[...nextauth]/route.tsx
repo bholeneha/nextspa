@@ -4,10 +4,10 @@ import CredentialsProvider from "next-auth/providers/credentials";
 const handler = NextAuth({
 	session: {
 		strategy: 'jwt',
-		maxAge: 60
+		maxAge: 60*5
 	},
 	jwt: {
-		maxAge: 60
+		maxAge: 60*5
 	},
 	callbacks: {
 		// modify jwt info - add accesstoken to jwt payload 

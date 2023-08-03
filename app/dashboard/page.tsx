@@ -20,9 +20,7 @@ const Dashboard: React.FC = () => {
   }, [sessionStatus, router])
 
   const toggleModal = () => {
-    console.log('triggered the toggle');
     setModal(!modal);
-    console.log(modal);
   }
 
   return (
