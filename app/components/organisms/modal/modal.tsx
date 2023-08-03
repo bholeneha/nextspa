@@ -23,7 +23,7 @@ const Modal: React.FC<ModalProps> = ({ toggleModal, children }) => {
                 <div className="overlay" ref={modalRef} onClick={handleOverlayClick}>
                     <div className="modal-content">
                         <h2>BOOK MEETING</h2>
-                        <BookingForm />
+                        <BookingForm toggleModal={toggleModal} />
                         {children}
                     </div>
                 </div>

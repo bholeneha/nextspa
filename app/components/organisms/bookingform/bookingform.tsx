@@ -1,3 +1,4 @@
+import React, {useState} from 'react';
 import { Form, Field } from 'react-final-form';
 import Select from 'react-select';
 import DatePicker from "react-datepicker";
@@ -6,7 +7,22 @@ import Input from '../../atoms/input/input';
 import Button from '../../atoms/button/button';
 import "./bookingform.scss";
 
-const BookingForm: React.FC = () => {
+interface BookingFormProps {
+    toggleModal: () => void;
+}
+
+interface SpaSpecialistOption {
+    value: string;
+    label: string;
+}
+
+const BookingForm: React.FC<BookingFormProps> = ({toggleModal}) => {
+    const [filteredSpaSpecialists, setFilteredSpaSpecialists] = useState<SpaSpecialistOption[]>([]);
+
+    const handleServiceTypeChange = (selectedServiceType: { value: string, label: string }) => {
+        const filteredOptions = spaSpecialistOptions.find((option) => option.label === selectedServiceType.label);
+        setFilteredSpaSpecialists(filteredOptions ? filteredOptions.options : []);
+    };
 
     const handleSubmit = async (values: FormData) => {
         console.log('booking form submitted', values);
@@ -70,7 +86,10 @@ const BookingForm: React.FC = () => {
                             className="select"
                             options={serviceTypeOptions}
                             value={props.input.value}
-                            onChange={props.input.onChange}
+                            onChange={(value) => {
+                                props.input.onChange(value);
+                                handleServiceTypeChange(value);
+                            }}
                         />
                         {props.meta.error && props.meta.touched && <span>{props.meta.error}</span>}
                         </>
@@ -102,7 +121,7 @@ const BookingForm: React.FC = () => {
                         <>
                         <Select
                             className="select"
-                            options={spaSpecialistOptions}
+                            options={filteredSpaSpecialists}
                             value={props.input.value}
                             onChange={props.input.onChange}
                         />
@@ -172,7 +191,7 @@ const BookingForm: React.FC = () => {
                     </Field>
                 </div>
 
-                <Button type="submit">SUBMIT</Button>
+                <Button type="submit" onClick={toggleModal}>SUBMIT</Button>
             </form>
         )}
     />
