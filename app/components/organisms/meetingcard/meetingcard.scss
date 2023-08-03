@@ -1,4 +1,27 @@
 .meeting-card {
     background-color: var(--light-blue);
     color: var(--blue);
+    display: flex;
+    margin: 1rem;
+    padding: 1rem;
+    justify-content: space-between;
+    gap: 1.25rem;
+
+    .meeting-info {
+        text-align: left;
+        width: 60%;
+    }
+
+    .meeting-time, .meeting-info, .meeting-date {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
+.past-meeting {
+    pointer-events: none;
+    background-color: var(--light-grey);
+    color: var(--grey);
+    margin-left: 0;
 }

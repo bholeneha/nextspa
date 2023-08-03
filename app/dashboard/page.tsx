@@ -38,17 +38,21 @@ const Dashboard: React.FC = () => {
     <HomeLayout>
       <div className='dashboard' > 
         <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
-        <div className='upcoming-meetings'>
-          {futureMeetings.map((meeting) => (
-              <MeetingCard
-                key={meeting.id}
-                date={meeting.date}
-                time={meeting.time}
-                serviceType={meeting.serviceType}
-                spaSpecialist={meeting.spaSpecialist}
-                location={meeting.location}
-              />
-          ))}
+        <div className='upcoming-meetings-wrapper'>
+          <div className="upcoming-meetings">
+            {futureMeetings.map((meeting) => (
+                <MeetingCard
+                  key={meeting.id}
+                  date={meeting.date}
+                  time={meeting.time}
+                  serviceType={meeting.serviceType}
+                  spaSpecialist={meeting.spaSpecialist}
+                  location={meeting.location}
+                  className="future-meeting"
+                />
+            ))}
+          </div>
+
           <Button onClick={toggleModal}>BOOK NEW MEETING</Button>
         </div>
         <div className='past-meetings'>
@@ -61,6 +65,7 @@ const Dashboard: React.FC = () => {
               serviceType={meeting.serviceType}
               spaSpecialist={meeting.spaSpecialist}
               location={meeting.location}
+              className="past-meeting"
             />
           ))}
         </div>
