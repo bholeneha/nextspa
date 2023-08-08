@@ -107,8 +107,8 @@ const Dashboard: React.FC = () => {
               />
             ))}
             <div className="pagination">
-              {pastCurrentPage > 1 && <button onClick={handlePrevPastPage}>Previous</button>}
-              {pastCurrentPage < totalPastPages && <button onClick={handleNextPastPage}>Next</button>}
+              {pastCurrentPage > 1 && <Button onClick={handlePrevPastPage}>Previous</Button>}
+              {pastCurrentPage < totalPastPages && <Button onClick={handleNextPastPage}>Next</Button>}
             </div>
           </div>
         </div>
