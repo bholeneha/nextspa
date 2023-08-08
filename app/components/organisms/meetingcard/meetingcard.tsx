@@ -2,6 +2,7 @@
 import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 import './meetingcard.scss';
+import Button from '../../atoms/button/button';
 
 interface MeetingCardProps {
   date: string;
@@ -19,7 +20,6 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
   spaSpecialist,
   location,
   className = '',
-
 }) => {
 
   const dateObject = new Date(date);
@@ -56,12 +56,12 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
       </div>
       <div className='meeting-time'>
         <span style={{ display: 'block', fontSize: '1rem', fontWeight: 'bold' }}>{formattedStartTime}</span>
-        <span style={{ display: 'block', fontSize: '0.90rem' }}>to</span>
+        <span style={{ display: 'block', fontSize: '0.9rem' }}>to</span>
         <span style={{ display: 'block', fontSize: '1rem', fontWeight: 'bold'}}>{formattedEndTime}</span>
       </div>
       {!hasPastMeetingsClass && (
-        <div className="meeting-edit-icon">
-          <FaEdit />
+        <div className="meeting-edit">
+          <Button className='edit-btn'><FaEdit /></Button>
         </div>
       )}
     </div>
