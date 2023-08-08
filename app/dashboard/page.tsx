@@ -42,8 +42,9 @@ const Dashboard: React.FC = () => {
 
   const renderFutureMeetings = futureMeetings.slice(
     (futureCurrentPage - 1) * meetingsPerPage,
-    (futureCurrentPage - 1) * meetingsPerPage + meetingsPerPage
+    (futureCurrentPage - 1) * meetingsPerPage + 4
   );
+  
   
   const renderPastMeetings = pastMeetings.slice(
     (pastCurrentPage - 1) * meetingsPerPage,
@@ -89,10 +90,10 @@ const Dashboard: React.FC = () => {
             ))}
           </div>
           <div className="pagination">
-            {futureCurrentPage > 1 && <button onClick={handlePrevFuturePage}>Previous</button>}
-            {futureCurrentPage < totalFuturePages && <button onClick={handleNextFuturePage}>Next</button>}
+            {futureCurrentPage > 1 && <Button onClick={handlePrevFuturePage}>Previous</Button>}
+            {futureCurrentPage < totalFuturePages && <Button onClick={handleNextFuturePage}>Next</Button>}
           </div>
-          <Button onClick={toggleModal}>BOOK NEW MEETING</Button>
+          <Button className="new-meeting-btn" onClick={toggleModal}>BOOK NEW MEETING</Button>
         </div>
 
          {/* PAST MEETINGS SECTION */}

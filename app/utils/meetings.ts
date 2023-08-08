@@ -8,6 +8,7 @@ interface Meeting {
   }
   
   const meetings: Meeting[] = [
+    // Past Meetings
     {
       id: 1,
       serviceType: 'Blowout',
@@ -56,12 +57,13 @@ interface Meeting {
       date: '2023-08-03',
       time: '14:30',
     },
+    // Upcoming Meetings
     {
       id: 7,
       serviceType: 'Blowout',
       location: 'Dreamhouse Spa Retreat',
       spaSpecialist: 'Barbie',
-      date: '2023-08-07',
+      date: '2023-08-10',
       time: '10:00',
     },
     {
@@ -69,7 +71,7 @@ interface Meeting {
       serviceType: 'Mani/Pedi',
       location: 'Malibu Spa Retreat',
       spaSpecialist: 'Stacie',
-      date: '2023-08-10',
+      date: '2023-08-15',
       time: '12:30',
     },
     {
@@ -77,7 +79,7 @@ interface Meeting {
       serviceType: 'Massage',
       location: 'Dreamhouse Spa Retreat',
       spaSpecialist: 'Christie',
-      date: '2023-08-15',
+      date: '2023-08-20',
       time: '17:30',
     },
     {
@@ -85,8 +87,24 @@ interface Meeting {
       serviceType: 'Blowout',
       location: 'Malibu Spa Retreat',
       spaSpecialist: 'Ken',
-      date: '2023-08-20',
+      date: '2023-08-25',
       time: '13:00',
+    },
+    {
+      id: 11,
+      serviceType: 'Mani/Pedi',
+      location: 'Dreamhouse Spa Retreat',
+      spaSpecialist: 'Chelsea',
+      date: '2023-08-30',
+      time: '15:00',
+    },
+    {
+      id: 12,
+      serviceType: 'Massage',
+      location: 'Malibu Spa Retreat',
+      spaSpecialist: 'Skipper',
+      date: '2023-09-05',
+      time: '14:30',
     },
   ];
   

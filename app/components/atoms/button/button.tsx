@@ -6,10 +6,11 @@ type ButtonProps = {
   children: React.ReactNode;
   disabled?: boolean;
   type?: "button" | "submit" | "reset" | undefined;
+  className?: string;
 }
 
-const Button: React.FC<ButtonProps> = ({ onClick, children, type, disabled}) => {
-  return <button className="button" onClick={onClick} type={type} disabled={disabled}>{children}</button>;
+const Button: React.FC<ButtonProps> = ({ onClick, children, type, disabled, className}) => {
+  return <button className={`button ${className}`} onClick={onClick} type={type} disabled={disabled}>{children}</button>;
 };
 
 export default Button;
