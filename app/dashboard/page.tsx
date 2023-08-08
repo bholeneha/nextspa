@@ -72,6 +72,8 @@ const Dashboard: React.FC = () => {
     <HomeLayout>
       <div className='dashboard' > 
         <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
+
+        {/* UPCOMING MEETINGS SECTION */}
         <div className='upcoming-meetings-wrapper'>
           <div className="upcoming-meetings">
             {renderFutureMeetings.map((meeting) => (
@@ -92,6 +94,8 @@ const Dashboard: React.FC = () => {
           </div>
           <Button onClick={toggleModal}>BOOK NEW MEETING</Button>
         </div>
+
+         {/* PAST MEETINGS SECTION */}
         <div className='past-meetings-wrapper'>
           <h2>Past Meetings</h2>
           <div className="past-meetings">
@@ -112,6 +116,8 @@ const Dashboard: React.FC = () => {
             </div>
           </div>
         </div>
+
+         {/* DOCUMENTS SECTION */}
         <div className='documents-wrapper'>
           <h2>Documents</h2>
         </div>
