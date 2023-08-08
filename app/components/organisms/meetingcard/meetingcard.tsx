@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { FaEdit } from 'react-icons/fa';
 import './meetingcard.scss';
 
 interface MeetingCardProps {
@@ -8,7 +9,7 @@ interface MeetingCardProps {
   serviceType: string;
   spaSpecialist: string;
   location: string;
-  className?: string; // Optional prop for custom class name
+  className?: string;
 }
 
 const MeetingCard: React.FC<MeetingCardProps> = ({
@@ -17,7 +18,8 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
   serviceType,
   spaSpecialist,
   location,
-  className = '', // Default value is an empty string
+  className = '',
+
 }) => {
 
   const dateObject = new Date(date);
@@ -38,6 +40,8 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
     hour12: true,
   });
 
+  const hasPastMeetingsClass = className.includes('past-meeting');
+
   return (
     <div className={`meeting-card ${className}`}>
       <div className='meeting-date'>
@@ -55,6 +59,11 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
         <span style={{ display: 'block', fontSize: '0.90rem' }}>to</span>
         <span style={{ display: 'block', fontSize: '1rem', fontWeight: 'bold'}}>{formattedEndTime}</span>
       </div>
+      {!hasPastMeetingsClass && (
+        <div className="meeting-edit-icon">
+          <FaEdit />
+        </div>
+      )}
     </div>
   );
 };
