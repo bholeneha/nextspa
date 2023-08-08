@@ -16,6 +16,7 @@ const Dashboard: React.FC = () => {
   const [modal, setModal] = useState(false);
   const [futureMeetings, setFutureMeetings] = useState<Meeting[]>([]);
   const [pastMeetings, setPastMeetings] = useState<Meeting[]>([]);
+  const [initialValues, setInitialValues] = useState({});
   
   const [futureCurrentPage, setFutureCurrentPage] = useState<number>(1);
   const [pastCurrentPage, setPastCurrentPage] = useState<number>(1);
@@ -66,8 +67,11 @@ const Dashboard: React.FC = () => {
   }, [sessionStatus, router])
 
   const toggleModal = () => {
+    if (modal) {
+        setInitialValues({});
+    }
     setModal(!modal);
-  }
+  };
 
   return (
     <HomeLayout>
@@ -85,7 +89,10 @@ const Dashboard: React.FC = () => {
                   serviceType={meeting.serviceType}
                   spaSpecialist={meeting.spaSpecialist}
                   location={meeting.location}
+                  notes={meeting.notes}
                   className="future-meeting"
+                  setModal = {toggleModal}
+                  setInitialValues = {setInitialValues}
                 />
             ))}
           </div>
@@ -123,7 +130,7 @@ const Dashboard: React.FC = () => {
           <h2>Documents</h2>
         </div>
       </div>
-      {modal && <Modal toggleModal={toggleModal}/>}
+      {modal && <Modal toggleModal={toggleModal} meeting={initialValues}/>}
       </HomeLayout>
   );
 };

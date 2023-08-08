@@ -5,9 +5,22 @@ import './modal.scss';
 interface ModalProps {
     toggleModal: () => void;
     children?: React.ReactNode;
+    meeting: {
+        serviceType: BookingFormOption | null;
+        location: BookingFormOption | null;
+        spaSpecialist: BookingFormOption | null;
+        date: Date | null; // Separate date property
+        time?: Date | null; // Separate time property
+        notes?: string;
+    };
 }
 
-const Modal: React.FC<ModalProps> = ({ toggleModal, children }) => {
+interface BookingFormOption {
+    value: string;
+    label: string;
+}
+
+const Modal: React.FC<ModalProps> = ({ toggleModal, children, meeting }) => {
     const modalRef = useRef<HTMLDivElement>(null);
 
     const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -23,7 +36,7 @@ const Modal: React.FC<ModalProps> = ({ toggleModal, children }) => {
                 <div className="overlay" ref={modalRef} onClick={handleOverlayClick}>
                     <div className="modal-content">
                         <h2>BOOK MEETING</h2>
-                        <BookingForm toggleModal={toggleModal} />
+                        <BookingForm toggleModal={toggleModal} meeting={meeting}/>
                         {children}
                     </div>
                 </div>

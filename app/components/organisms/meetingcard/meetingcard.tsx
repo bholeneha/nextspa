@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { FaEdit } from 'react-icons/fa';
 import './meetingcard.scss';
@@ -10,7 +9,16 @@ interface MeetingCardProps {
   serviceType: string;
   spaSpecialist: string;
   location: string;
+  notes?: string;
   className?: string;
+  setModal?: () => void;
+  setInitialValues?: (meeting: {
+    date: string;
+    time: string;
+    serviceType: string;
+    spaSpecialist: string;
+    location: string;
+  }) => void;
 }
 
 const MeetingCard: React.FC<MeetingCardProps> = ({
@@ -19,7 +27,10 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
   serviceType,
   spaSpecialist,
   location,
+  notes,
   className = '',
+  setModal,
+  setInitialValues
 }) => {
 
   const dateObject = new Date(date);
@@ -42,6 +53,23 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
 
   const hasPastMeetingsClass = className.includes('past-meeting');
 
+  const meeting = {
+    date,
+    time,
+    serviceType,
+    spaSpecialist,
+    location,
+    notes
+  };
+
+  const onEdit = () => {
+    if(!hasPastMeetingsClass && setModal && setInitialValues){
+      setModal();
+      setInitialValues(meeting);
+    } 
+  }
+
+
   return (
     <div className={`meeting-card ${className}`}>
       <div className='meeting-date'>
@@ -61,7 +89,7 @@ const MeetingCard: React.FC<MeetingCardProps> = ({
       </div>
       {!hasPastMeetingsClass && (
         <div className="meeting-edit">
-          <Button className='edit-btn'><FaEdit /></Button>
+          <Button className='edit-btn' onClick={onEdit}><FaEdit /></Button>
         </div>
       )}
     </div>

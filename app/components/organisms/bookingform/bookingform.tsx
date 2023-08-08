@@ -11,6 +11,7 @@ import "./bookingform.scss";
 // Type Declarations
 interface BookingFormProps {
     toggleModal: () => void;
+    meeting?: FormValues | null;
 }
 
 type SingleValue<T> = BookingFormOption | null;
@@ -32,14 +33,15 @@ interface FormValues {
     serviceType: BookingFormOption | null;
     location: BookingFormOption | null;
     spaSpecialist: BookingFormOption | null;
-    dateTime: Date | null;
+    date: Date | null; // Separate date property
+    time?: Date | null; // Separate time property
     notes?: string;
 }
 
 // Functions
 
 const required = (value: string | BookingFormOption | Date | null | undefined) => {
-    if (!value || (typeof value === 'object' && 'label' in value && value.label.trim() === '')) {
+    if (!value || (typeof value === 'object' && 'label' in value && value.label && value.label.trim() === '')) {
       return 'This field is required';
     }
     return undefined;
@@ -48,7 +50,7 @@ const required = (value: string | BookingFormOption | Date | null | undefined) =
 
 // Component
 
-const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
+const BookingForm: React.FC<BookingFormProps> = ({ toggleModal, meeting }) => {
     const [filteredSpaSpecialists, setFilteredSpaSpecialists] = useState<BookingFormOption[]>([]);
     const [currentTime, setCurrentTime] = useState<Date>(new Date());
 
@@ -90,17 +92,30 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
         { value: 'skipper', label: 'Skipper', service: 'Massage' }
     ];
 
+    console.log(meeting);
+
     return (
         <Form
             onSubmit={handleSubmit}
-            initialValues={{
-                serviceType: null,
-                location: null,
-                spaSpecialist: null,
-                date: null,
-                time: null,
-                notes: ''
-            }}
+            initialValues={
+                meeting
+                    ? {
+                        serviceType: { value: meeting.serviceType, label: meeting.serviceType },
+                        location: { value: meeting.location, label: meeting.location },
+                        spaSpecialist: { value: meeting.spaSpecialist, label: meeting.spaSpecialist },
+                        date: meeting.date ? new Date(meeting.date) : null,
+                        time: null,
+                        notes: '',
+                    }
+                    : {
+                        serviceType: null,
+                        location: null,
+                        spaSpecialist: null,
+                        date: null,
+                        time: null,
+                        notes: '',
+                    }
+            }
 
             render={({ handleSubmit }) => (
                 <form onSubmit={handleSubmit} className="booking-form">
@@ -112,7 +127,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                                 <>
                                     <Select
                                         className="select"
-                                        placeholder="Select Service Type"
+                                        placeholder={"Select Service Type"}
                                         options={serviceTypeOptions}
                                         value={props.input.value}
                                         onChange={(selectedOption) => {
@@ -133,7 +148,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                                 <>
                                     <Select
                                         className="select"
-                                        placeholder="Select Location"
+                                        placeholder={"Select Location"}
                                         options={locationOptions}
                                         value={props.input.value}
                                         onChange={props.input.onChange}
@@ -151,7 +166,7 @@ const BookingForm: React.FC<BookingFormProps> = ({ toggleModal }) => {
                                 <>
                                     <Select
                                         className="select"
-                                        placeholder="Select Spa Specialist"
+                                        placeholder={"Select Spa Specialist"}
                                         options={filteredSpaSpecialists}
                                         value={props.input.value}
                                         onChange={props.input.onChange}
