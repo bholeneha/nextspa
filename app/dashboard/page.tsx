@@ -16,6 +16,40 @@ const Dashboard: React.FC = () => {
   const [modal, setModal] = useState(false);
   const [futureMeetings, setFutureMeetings] = useState<Meeting[]>([]);
   const [pastMeetings, setPastMeetings] = useState<Meeting[]>([]);
+  
+  const [futureCurrentPage, setFutureCurrentPage] = useState<number>(1);
+  const [pastCurrentPage, setPastCurrentPage] = useState<number>(1);
+  const meetingsPerPage = 3;
+
+  const totalFuturePages = Math.ceil(futureMeetings.length / meetingsPerPage);
+  const totalPastPages = Math.ceil(pastMeetings.length / meetingsPerPage);
+
+  const handleNextFuturePage = () => {
+    setFutureCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevFuturePage = () => {
+    setFutureCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const handleNextPastPage = () => {
+    setPastCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  const handlePrevPastPage = () => {
+    setPastCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const renderFutureMeetings = futureMeetings.slice(
+    (futureCurrentPage - 1) * meetingsPerPage,
+    (futureCurrentPage - 1) * meetingsPerPage + meetingsPerPage
+  );
+  
+  const renderPastMeetings = pastMeetings.slice(
+    (pastCurrentPage - 1) * meetingsPerPage,
+    (pastCurrentPage - 1) * meetingsPerPage + meetingsPerPage
+  );
+  
 
   useEffect(() => {
     if(sessionStatus === 'unauthenticated') {
@@ -40,7 +74,7 @@ const Dashboard: React.FC = () => {
         <h1>WELCOME {data?.user?.name?.toUpperCase()}</h1>
         <div className='upcoming-meetings-wrapper'>
           <div className="upcoming-meetings">
-            {futureMeetings.map((meeting) => (
+            {renderFutureMeetings.map((meeting) => (
                 <MeetingCard
                   key={meeting.id}
                   date={meeting.date}
@@ -52,22 +86,31 @@ const Dashboard: React.FC = () => {
                 />
             ))}
           </div>
-
+          <div className="pagination">
+            {futureCurrentPage > 1 && <button onClick={handlePrevFuturePage}>Previous</button>}
+            {futureCurrentPage < totalFuturePages && <button onClick={handleNextFuturePage}>Next</button>}
+          </div>
           <Button onClick={toggleModal}>BOOK NEW MEETING</Button>
         </div>
-        <div className='past-meetings'>
+        <div className='past-meetings-wrapper'>
           <h2>Past Meetings</h2>
-          {pastMeetings.map((meeting) => (
-            <MeetingCard
-              key={meeting.id}
-              date={meeting.date}
-              time={meeting.time}
-              serviceType={meeting.serviceType}
-              spaSpecialist={meeting.spaSpecialist}
-              location={meeting.location}
-              className="past-meeting"
-            />
-          ))}
+          <div className="past-meetings">
+            {renderPastMeetings.map((meeting) => (
+              <MeetingCard
+                key={meeting.id}
+                date={meeting.date}
+                time={meeting.time}
+                serviceType={meeting.serviceType}
+                spaSpecialist={meeting.spaSpecialist}
+                location={meeting.location}
+                className="past-meeting"
+              />
+            ))}
+            <div className="pagination">
+              {pastCurrentPage > 1 && <button onClick={handlePrevPastPage}>Previous</button>}
+              {pastCurrentPage < totalPastPages && <button onClick={handleNextPastPage}>Next</button>}
+            </div>
+          </div>
         </div>
         <div className='documents-wrapper'>
           <h2>Documents</h2>
